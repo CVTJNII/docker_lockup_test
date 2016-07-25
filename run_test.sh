@@ -29,16 +29,6 @@ fi
 # Start fresh: Remove all existing containers
 docker ps -a | tail -n +2 | awk '{print $1}' | xargs -r docker rm -f
 
-## Build the chatterboxes which add network stress
-#cd /tests
-#docker build -t chatterbox -f chatterbox.dockerfile . || exit 1
-#
-## Run the chatterboxes
-#for((n=0;$n<10;n++)); do
-#    docker run -d -p "$((4444 + $n)):4444" chatterbox
-#    docker run -d -e TERM=rxvt chatterbox watch -tn 0.2 "nc 172.17.0.1 $((4444 + $n)) >/dev/null"
-#done
-
 # Pull the container
 CONTAINER='ubuntu'
 docker pull $CONTAINER || exit 1
